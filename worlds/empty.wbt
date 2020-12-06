@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.06481199284771148 0.9724745528979624 0.22381387255712354 3.0001769496629382
-  position 0.040183782771915984 0.26335272276768 -0.2642712490814213
+  orientation 0.04577285764452233 0.9266516752308975 0.3731239985511863 2.9447862870765427
+  position 0.17628718878891975 0.610396249705331 -0.5522402311510987
 }
 TexturedBackground {
 }
@@ -15,11 +15,13 @@ RectangleArena {
 TinkerbotsBase {
   translation 0 0.06 0
   rotation 0 1 0 0.523599
+  controller "my_controller"
   upSlot TinkerbotsCube {
     leftSlot TinkerbotsCube {
       rightSlot TinkerbotsMotor {
-        rotation 0 0 1 -1.5708003061004252
-        frontSlot TinkerbotsAxle {
+        rotation 0 0 1 1.5708003061004252
+        name "motor_left"
+        backSlot TinkerbotsAxle {
           endSlot TinkerbotsWheel {
           }
         }
@@ -28,6 +30,7 @@ TinkerbotsBase {
     rightSlot TinkerbotsCube {
       leftSlot TinkerbotsMotor {
         rotation 0 0 1 1.5707996938995747
+        name "motor_right"
         frontSlot TinkerbotsAxle {
           endSlot TinkerbotsWheel {
           }
