@@ -7,7 +7,7 @@
 
 % uncomment the next two lines if you want to use
 % MATLAB's desktop to interact with the controller:
-%desktop;
+desktop;
 %keyboard;
 
 TIME_STEP = 64;
@@ -17,17 +17,28 @@ TIME_STEP = 64;
 %  wb_camera_enable(camera, TIME_STEP);
 motor_left = wb_robot_get_device('motor_left');
 motor_right = wb_robot_get_device('motor_right');
+
+ds = wb_robot_get_device('ds');
+
 wb_motor_set_position(motor_left,Inf);
 wb_motor_set_velocity(motor_left,1);
 wb_motor_set_position(motor_right,Inf);
 wb_motor_set_velocity(motor_right,1);
 
+wb_distance_sensor_enable(ds, TIME_STEP);
 % main loop:
 % perform simulation steps of TIME_STEP milliseconds
 % and leave the loop when Webots signals the termination
 %
 while wb_robot_step(TIME_STEP) ~= -1
+  distance = wb_distance_sensor_get_value(ds);
+  
+  disp(distance);
 
+  if distance < 100
+    wb_motor_set_velocity(motor_left,0);
+    wb_motor_set_velocity(motor_right,0);
+  end
   % read the sensors, e.g.:
   %  rgb = wb_camera_get_image(camera);
 
